@@ -16,6 +16,8 @@ This is a library that works as a connector to [APIFINY OPEN API](https://github
 ```python
 pip3 install apifiny
 ```
+Use windows, installing quickfix fails,Please use the link to download the file and install locally.
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#quickfix
 
 ## RESTful APIs
 
