@@ -1,5 +1,4 @@
 PyJWT==2.3.0
 pyyaml==6.0
-quickfix==1.15.1
 requests==2.26.0
 websocket_client==1.0.1
