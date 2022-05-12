@@ -67,4 +67,4 @@ Please find `examples` folder to check for more endpoints.
 
 Contributions are welcome.<br/>
 If you've found a bug within this project, please open an issue to discuss what you would like to change.<br/>
-If it's an issue with the API, please new issue at [apifiny-connector-python issues](https://github.com/Apifiny-IO/apifiny-connector-python/issues)
+If it's an issue with the API, please report any new issues at [apifiny-connector-python issues](https://github.com/Apifiny-IO/apifiny-connector-python/issues)
