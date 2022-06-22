@@ -112,6 +112,10 @@ class API:
 
     # Account API
     # unified_url
+    def create_sub_account(self, **kwargs):
+        return self.http_request("get", "/account/createSubAccount", kwargs)
+        
+    # unified_url
     def query_account_info(self, **kwargs):
         return self.http_request("get", "/account/queryAccountInfo", kwargs)
 
