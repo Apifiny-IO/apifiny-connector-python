@@ -83,13 +83,13 @@ def rest_url_yaml(unified_url, venue):
         return "https://api.apifiny.com/ac/v2/APIFINY"
     else:
         venue = venue.upper()
-        urls = read_conf("apifiny/conf/url.yaml").get("REST")
+        urls = read_conf("apifiny/lib/url.yaml").get("REST")
         return urls.get(venue, f"https://api.apifiny.com/ac/v2/{venue}")
 
 
 def ws_url_yaml(venue):
     venue = venue.upper()
-    urls = read_conf("apifiny/conf/url.yaml").get("WS")
+    urls = read_conf("apifiny/lib/url.yaml").get("WS")
     return urls.get(venue, f"wss://api.apifiny.com")
 
 
