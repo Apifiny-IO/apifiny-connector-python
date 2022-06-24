@@ -102,10 +102,20 @@ def rest_url(unified_url, venue):
         return urls.get(venue, f"https://api.apifiny.com/ac/v2/{venue}")
 
 
-def ws_url(venue):
+def ws_url(venue="GBBO", trade=True):
     venue = venue.upper()
     urls = apifiny_urls.urls.get("WS")
-    return urls.get(venue, f"wss://api.apifiny.com")
+
+    if trade:
+        url = urls.get(venue, "wss://api.apifiny.com")
+        url = f"{url}/ws/trading"
+    else:
+        url = urls.get(venue, "wss://api.apifiny.com")
+        if "api.apifiny" in url:
+            url = f"{url}/ac/ws/v2/{venue}/asset"
+        else:
+            url = f"{url}/ac/ws/v2/asset"
+    return url
 
 
 def config_logging(logging, logging_level, log_file: str = None):
