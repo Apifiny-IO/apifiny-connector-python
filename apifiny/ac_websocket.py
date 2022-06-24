@@ -47,7 +47,7 @@ class ACWebSocket(object):
         # Renew websocket API info
         if md:
             self.host = "wss://api.apifiny.com/md/ws/v1"
-        print(self.host)
+        print(f"Connect url: {self.host}")
         self.account_id = account_id
         self.secret_key_id = apiKey
         self.secret_key = secretKey
@@ -90,17 +90,17 @@ class ACWebSocket(object):
     def onMessage(self, ws, evt):
         """信息推送"""
         evt = json.loads(evt)
-        print(evt)
+        print(f"APIFINY.recvMsg: {evt}")
 
     def onError(self, ws, evt):
         print("APIFINY.onError_API:{}".format(evt))
 
     def onClose(self, ws, *args):
-        print("APIFINY.Websocket.onClose")
+        print("APIFINY.Websocket.onClose\n")
 
     def onOpen(self, ws):
         self.is_connected = 1
-        print("APIFINY.Websocket.onOpen")
+        print("APIFINY.Websocket.onOpen\n")
     # ----------------------------------------------------------------------
 
     def send_msg(self, msg):
@@ -133,7 +133,7 @@ class ACWebSocket(object):
 class ACSpotApi(ACWebSocket):
     """AC Spot trade"""
 
-    def __init__(self, venue=None, trade=None):
+    def __init__(self, venue=None, trade=True):
         """Constructor"""
         super(ACSpotApi, self).__init__(venue, trade)
 
