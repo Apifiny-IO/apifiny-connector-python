@@ -4,7 +4,8 @@
 This is a library that works as a connector to [APIFINY OPEN API](https://github.com/Apifiny-IO/apifiny-connector-python)
 
 - Supported APIs:
-    - REST trading/market API
+>- REST trading/market API
+>- WebSocket trading/market API
 
 
 ## OPEN API Documentation
@@ -39,7 +40,7 @@ client = Client(False,"BINANCE")
 # Get server timestamp
 print(client.server_time())
 
-# api key/secret are required for user data endpoints
+# api key/secret are required for trade endpoints
 client = Client(unified_url=False, venue="BINANCE", account_id='<account_id>', key='<api_key>', secret='<api_secret>')
 
 # Post a new order
@@ -60,6 +61,45 @@ params = {
 response = client.new_order(**params)
 print(response)
 ```
+## WebSocket APIs
+
+Usage examples:
+```python
+from apifiny.ac_websocket import ACSpotApi as Client
+
+# Get BINANCE orderbook of BTCUSDT
+msg = {"channel": "orderbook", "symbol": 'BTCUSDT', "venues": ["BINANCE"], "action": "sub"}
+# Get BINANCE klines of BTCUSDT at 1m interval
+# msg = {"channel": "kline_1m", "symbol": "BTCUSDT", "venues": ["BINANCE"], "action": "sub"}
+client = Client()
+client.connect(md=True)
+client.send_msg(msg)
+```
+
+```python
+from apifiny.ac_websocket import ACSpotApi as Client
+
+# Post a new order
+params = {
+    "accountId": account_id,
+    "venue": "BINANCE",
+    "orderId": "",
+    "orderInfo": {
+        "limitPrice": "30000",
+        "orderSide": "BUY",
+        "orderType": "LIMIT",
+        "quantity": "0.0001",
+        "symbol": "BTCUSDT",
+        "timeInForce": 1,
+    }
+}
+# api key/secret are required for trade endpoints
+client = Client(venue="BINANCE")
+client.connect(account_id, api_key_id, secret_key)
+client.new_order(**params)
+# client.close()
+```
+
 Please find `examples` folder to check for more endpoints.
 
 
