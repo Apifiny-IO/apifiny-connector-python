@@ -28,7 +28,7 @@ from apifiny.rest_market import MarketData as MD_Client
 
 md_client = MD_Client()
 # Get BINANCE orderbook of BTCUSDT
-print(client.market_order_book("BINANCE", "BTCUSDT"))
+print(md_client.market_order_book("BINANCE", "BTCUSDT"))
 # Get BINANCE klines of BTCUSDT at 1m interval
 print(md_client.market_kline("BINANCE", "BTC", "USDT", "1m"))
 ```
