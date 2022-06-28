@@ -107,7 +107,8 @@ class ACWebSocket(object):
         while not self.is_connected:
             pass
         print("APIFINY.sendMsg: {}".format(msg))
-        msg = json.dumps(msg)
+        if isinstance(msg, dict):
+            msg = json.dumps(msg)
         try:
             self.ws.send(msg)
         except websocket.WebSocketConnectionClosedException as ex:
