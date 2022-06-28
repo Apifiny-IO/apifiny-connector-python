@@ -4,8 +4,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/stargazers)
 [![GitHub license](https://img.shields.io/github/license/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/blob/main/LICENSE)
 [![contributors](https://img.shields.io/github/contributors/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/graphs/contributors)
-![PyPI](https://img.shields.io/pypi/v/apifiny)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/apifiny)
+[![PyPI](https://img.shields.io/pypi/v/apifiny)](https://pypi.org/project/apifiny/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/apifiny)](https://pypi.org/project/apifiny/)
 [![Downloads](https://pepy.tech/badge/apifiny/month)](https://pepy.tech/project/apifiny)
 
 This is a library that works as a connector to [APIFINY OPEN API](https://github.com/Apifiny-IO/apifiny-connector-python)
