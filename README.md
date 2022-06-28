@@ -1,5 +1,12 @@
 # Apifiny OPEN API Connector Python
-
+[![GitHub issues](https://img.shields.io/github/issues/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/network)
+[![GitHub stars](https://img.shields.io/github/stars/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/stargazers)
+[![GitHub license](https://img.shields.io/github/license/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/blob/main/LICENSE)
+[![contributors](https://img.shields.io/github/contributors/Apifiny-IO/apifiny-connector-python)](https://github.com/Apifiny-IO/apifiny-connector-python/graphs/contributors)
+![PyPI](https://img.shields.io/pypi/v/apifiny)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/apifiny)
+[![Downloads](https://pepy.tech/badge/apifiny/month)](https://pepy.tech/project/apifiny)
 
 This is a library that works as a connector to [APIFINY OPEN API](https://github.com/Apifiny-IO/apifiny-connector-python)
 
