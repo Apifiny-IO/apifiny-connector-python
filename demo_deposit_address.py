@@ -14,8 +14,11 @@ There is 0 fee for you to allocate to sub-account, using examples/funds_transfer
 
 
 import logging
-from apifiny.rest_api import API as Client
+
+from apifiny.lib import venue_list
 from apifiny.lib.utils import config_logging
+from apifiny.rest_api import API as Client
+
 config_logging(logging, logging.INFO)
 
 account_id = "Replace with your account id"
@@ -23,7 +26,7 @@ api_key_id = "Replace with your api key"
 secret_key = "Replace with your secret key"
 
 unified_url = True
-venue = "GBBO"
+venue = venue_list.BINANCE
 
 
 params = {

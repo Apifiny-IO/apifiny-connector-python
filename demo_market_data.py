@@ -8,12 +8,14 @@
 '''
 
 import logging
-from apifiny.rest_market import MarketData as Client
+
+from apifiny.lib import venue_list
 from apifiny.lib.utils import config_logging
+from apifiny.rest_market import MarketData as Client
 
 config_logging(logging, logging.INFO)
 
-venue = "BINANCE"
+venue = venue_list.BINANCE
 symbol = "BTCUSDT"
 
 client = Client()

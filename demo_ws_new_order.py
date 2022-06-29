@@ -11,13 +11,15 @@
 # here put the import lib
 
 from apifiny.ac_websocket import ACSpotApi as Client
+from apifiny.lib import venue_list
 from apifiny.lib.utils import generate_orderid
 
 account_id = ""
 api_key_id = ""
 secret_key = ""
 
-venue = "GBBO"
+# venue = "GBBO"
+venue = venue_list.BINANCE
 
 # LIMIT
 params = {

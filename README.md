@@ -50,8 +50,10 @@ print(md_client.market_kline("BINANCE", "BTC", "USDT", "1m"))
 Create Order
 ```python
 from apifiny.rest_api import API as Client
+from apifiny.lib import venue_list
 
-client = Client(False,"BINANCE")
+client = Client(False,venue_list.BINANCE)
+
 # Get server timestamp
 print(client.server_time())
 

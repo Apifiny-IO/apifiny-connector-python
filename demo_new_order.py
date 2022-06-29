@@ -8,9 +8,10 @@
 '''
 
 import logging
+
+from apifiny.lib import venue_list
+from apifiny.lib.utils import config_logging, generate_orderid
 from apifiny.rest_api import API as Client
-from apifiny.lib.utils import config_logging
-from apifiny.lib.utils import generate_orderid
 
 config_logging(logging, logging.INFO)
 
@@ -19,7 +20,8 @@ api_key_id = "Replace with your api key"
 secret_key = "Replace with your secret key"
 
 unified_url = False
-venue = "GBBO"
+# venue = "GBBO"
+venue = venue_list.BINANCE
 
 # LIMIT
 params = {
