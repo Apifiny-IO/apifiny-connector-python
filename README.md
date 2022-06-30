@@ -78,6 +78,14 @@ params = {
 response = client.new_order(**params)
 print(response)
 ```
+Access sandbox network
+```python
+from apifiny.rest_api import API as Client
+
+client = Client(test=True)
+print(client.list_venue())
+```
+
 ## WebSocket APIs
 
 **Usage examples:**

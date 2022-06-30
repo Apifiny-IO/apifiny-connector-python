@@ -26,9 +26,9 @@ from .lib.utils import gen_signature, ws_url
 
 class ACWebSocket(object):
 
-    def __init__(self, venue, trade=True):
+    def __init__(self, venue, trade=True, test=False):
         if venue:
-            self.host = ws_url(venue, trade)
+            self.host = ws_url(venue, trade, test)
         self.account_id = ""
         self.secret_key_id = ""
         self.secret_key = ""
@@ -36,6 +36,7 @@ class ACWebSocket(object):
         self.thread = None
         self.header = None
         self.is_connected = None
+        self.test = test
 
     def connect(self, account_id=None, apiKey=None, secretKey=None, md=False, trace=False):
         """
@@ -46,7 +47,10 @@ class ACWebSocket(object):
         """
         # Renew websocket API info
         if md:
-            self.host = "wss://api.apifiny.com/md/ws/v1"
+            if self.test:
+                self.host = "ws://sandbox.apifiny.com/md/ws/v1"
+            else:
+                self.host = "wss://api.apifiny.com/md/ws/v1"
         print(f"Connect url: {self.host}")
         self.account_id = account_id
         self.secret_key_id = apiKey
@@ -134,9 +138,9 @@ class ACWebSocket(object):
 class ACSpotApi(ACWebSocket):
     """AC Spot trade"""
 
-    def __init__(self, venue=None, trade=True):
+    def __init__(self, venue=None, trade=True, test=False):
         """Constructor"""
-        super(ACSpotApi, self).__init__(venue, trade)
+        super(ACSpotApi, self).__init__(venue, trade, test)
 
     def new_order(self, **kwargs):
         """Create Order"""

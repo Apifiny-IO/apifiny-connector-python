@@ -11,8 +11,11 @@ import requests
 
 
 class MarketData:
-    def __init__(self):
-        self.base_url = "https://api.apifiny.com"
+    def __init__(self, test=False):
+        if test:
+            self.base_url = "https://api-sandbox.apifiny.com"
+        else:
+            self.base_url = "https://api.apifiny.com"
         self.session = requests.Session()
 
     def http_request(self, path):

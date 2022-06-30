@@ -15,11 +15,11 @@ from .lib.utils import gen_signature, prepare_params, rest_url
 
 
 class API:
-    def __init__(self, unified_url=True, venue="GBBO", account_id=None, key=None, secret=None):
+    def __init__(self, unified_url=True, venue="GBBO", account_id=None, key=None, secret=None, test=False):
         self.secret_key_id = key
         self.secret_key = secret
         self.account_id = account_id
-        self.base_url = rest_url(unified_url, venue)
+        self.base_url = rest_url(unified_url, venue, test)
         self.session = requests.Session()
 
     def http_request(self, method, path, params=None):

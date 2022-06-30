@@ -93,28 +93,37 @@ def ws_url_yaml(venue):
     return urls.get(venue, f"wss://api.apifiny.com")
 
 
-def rest_url(unified_url, venue):
-    if unified_url:
-        return "https://api.apifiny.com/ac/v2/APIFINY"
+def rest_url(unified_url, venue, test):
+    if test:
+        return f"http://api-sandbox.apifiny.com/ac/v2/{venue}"
     else:
-        venue = venue.upper()
-        urls = apifiny_urls.urls.get("REST")
-        return urls.get(venue, f"https://api.apifiny.com/ac/v2/{venue}")
-
-
-def ws_url(venue="GBBO", trade=True):
-    venue = venue.upper()
-    urls = apifiny_urls.urls.get("WS")
-
-    if trade:
-        url = urls.get(venue, "wss://api.apifiny.com")
-        url = f"{url}/ws/trading"
-    else:
-        url = urls.get(venue, "wss://api.apifiny.com")
-        if "api.apifiny" in url:
-            url = f"{url}/ac/ws/v2/{venue}/asset"
+        if unified_url:
+            return "https://api.apifiny.com/ac/v2/APIFINY"
         else:
-            url = f"{url}/ac/ws/v2/asset"
+            venue = venue.upper()
+            urls = apifiny_urls.urls.get("REST")
+            return urls.get(venue, f"https://api.apifiny.com/ac/v2/{venue}")
+
+
+def ws_url(venue="GBBO", trade=True, test=False):
+    venue = venue.upper()
+    if test:
+        if trade:
+            url = "ws://api-sandbox.apifiny.com/ws/trading"
+        else:
+            url = f"ws://api-sandbox.apifiny.com/ac/ws/v2/{venue}/asset"
+    else:
+        urls = apifiny_urls.urls.get("WS")
+
+        if trade:
+            url = urls.get(venue, "wss://api.apifiny.com")
+            url = f"{url}/ws/trading"
+        else:
+            url = urls.get(venue, "wss://api.apifiny.com")
+            if "api.apifiny" in url:
+                url = f"{url}/ac/ws/v2/{venue}/asset"
+            else:
+                url = f"{url}/ac/ws/v2/asset"
     return url
 
 
