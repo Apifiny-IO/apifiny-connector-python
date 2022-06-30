@@ -78,7 +78,7 @@ params = {
 response = client.new_order(**params)
 print(response)
 ```
-Access sandbox network
+Access sandbox environment
 ```python
 from apifiny.rest_api import API as Client
 
@@ -98,6 +98,7 @@ from apifiny.ac_websocket import ACSpotApi as Client
 msg = {"channel": "orderbook", "symbol": 'BTCUSDT', "venues": ["BINANCE"], "action": "sub"}
 # Get BINANCE klines of BTCUSDT at 1m interval
 # msg = {"channel": "kline_1m", "symbol": "BTCUSDT", "venues": ["BINANCE"], "action": "sub"}
+# client = Client(test=True) # test=True,Access sandbox environment
 client = Client()
 client.connect(md=True)
 client.send_msg(msg)
