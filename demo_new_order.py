@@ -47,6 +47,7 @@ params = {
 # SOR: unified_url = True
 # "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "SOR",  "quantity": "xx", "symbol": "BTCUSDT", "timeInForce": 1}
 
+# test=True is sandbox env,default is prod env.
 client = Client(unified_url, venue, account_id, api_key_id, secret_key)
 
 try:

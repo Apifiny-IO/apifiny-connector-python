@@ -18,7 +18,9 @@ config_logging(logging, logging.INFO)
 venue = venue_list.BINANCE
 symbol = "BTCUSDT"
 
+# test=True is sandbox env,default is prod env.
 client = Client()
+
 
 logging.info(client.cob(symbol))
 logging.info(client.market_order_book(venue, symbol))

@@ -27,6 +27,7 @@ msg = {"channel": "orderbook", "symbol": 'BTCUSDT', "venues": ["BINANCE"], "acti
 {"channel": "kline_1m", "symbol": "BTCUSDT", "venues": ["BINANCE"], "action": "sub"}
 """
 
+# test=True is sandbox env,default is prod env.
 client = Client()
 client.connect(md=True)
 client.send_msg(msg)
