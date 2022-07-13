@@ -1,3 +1,2 @@
-PyJWT==2.3.0
 requests==2.26.0
 websocket_client==1.0.1

@@ -44,6 +44,7 @@ params = {
 # "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "SOR",  "quantity": "xx", "symbol": "BTCUSDT", "timeInForce": 1}
 
 client = Client(venue=venue)
-client.connect(account_id, api_key_id, secret_key)
+client.connect()
+client.login(api_key_id, secret_key)
 client.new_order(**params)
 client.close()

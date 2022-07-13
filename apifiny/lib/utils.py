@@ -1,29 +1,22 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-'''
-# @File    :   utils.py
-# @Author  :   liuke
-# @Version :   1.0
-# @Desc    :   None
-'''
+"""
+====================================
+@File    :  utils.py
+@Time    :  2022/07/07 11:03:27
+@Author  :  LiuKeCode@hotmail.com
+@Desc    :  None
+====================================
+"""
+# here put the import lib
 
-
-import datetime
 import hashlib
+import hmac
 import random
 import time
 from urllib.parse import unquote, urlencode
 
-import jwt
-import yaml
-
 from apifiny.lib import apifiny_urls
-
-
-def read_conf(file):
-    with open(file, 'r') as f:
-        conf = yaml.load(f.read(), Loader=yaml.FullLoader)
-    return conf
 
 
 def clean_none_value(d) -> dict:
@@ -42,29 +35,16 @@ def prepare_params(params) -> str:
     return encoded_string(clean_none_value(params))
 
 
-def gen_signature(account_id, secret_key_id, secret_key, params_string=None) -> str:
+def gen_signature(secret_key, data) -> str:
     """Generate signature
     Args:
-        account_id (str): account_id
-        secret_key_id (str): api_key_id
-        secret_key (str): api_key
-        params_string (str, optional): parameter. Defaults to None.
-
+        secret_key (str): secret_key
+        data (str): data
     Returns:
-        str: jwt signature
+        str: hmac sha256 signature
     """
-    digest = None
-    if params_string:
-        digest = hashlib.sha256(params_string.encode()).hexdigest()
-    millis = datetime.datetime.utcnow() + datetime.timedelta(seconds=60)
-    signature = jwt.encode({
-        'accountId': account_id,
-        'secretKeyId': secret_key_id,
-        'digest': digest,
-        'exp': millis,
-    }, secret_key, algorithm='HS256')
-    # return signature.decode("utf-8")
-    return signature
+    message = data.encode("utf-8")
+    return hmac.new(secret_key.encode("utf-8"), message, digestmod=hashlib.sha256).hexdigest()
 
 
 def generate_orderid(account_id) -> str:
@@ -75,22 +55,7 @@ def generate_orderid(account_id) -> str:
     Returns:
         str: orderid
     """
-    return account_id.split('-')[-1] + str(int(time.time() * 1000)) + str(random.randint(100, 999))
-
-
-def rest_url_yaml(unified_url, venue):
-    if unified_url:
-        return "https://api.apifiny.com/ac/v2/APIFINY"
-    else:
-        venue = venue.upper()
-        urls = read_conf("apifiny/lib/url.yaml").get("REST")
-        return urls.get(venue, f"https://api.apifiny.com/ac/v2/{venue}")
-
-
-def ws_url_yaml(venue):
-    venue = venue.upper()
-    urls = read_conf("apifiny/lib/url.yaml").get("WS")
-    return urls.get(venue, f"wss://api.apifiny.com")
+    return "SDK_" + account_id.split('-')[-1] + str(int(time.time() * 1000)) + str(random.randint(100, 999))
 
 
 def rest_url(unified_url, venue, test):
@@ -105,25 +70,14 @@ def rest_url(unified_url, venue, test):
             return urls.get(venue, f"https://api.apifiny.com/ac/v2/{venue}")
 
 
-def ws_url(venue="GBBO", trade=True, test=False):
+def ws_url(venue="GBBO", test=False):
     venue = venue.upper()
     if test:
-        if trade:
-            url = "ws://api-sandbox.apifiny.com/ws/trading"
-        else:
-            url = f"ws://api-sandbox.apifiny.com/ac/ws/v2/{venue}/asset"
+        url = f"ws://api-sandbox.apifiny.com/ws/stream"
     else:
         urls = apifiny_urls.urls.get("WS")
-
-        if trade:
-            url = urls.get(venue, "wss://api.apifiny.com")
-            url = f"{url}/ws/trading"
-        else:
-            url = urls.get(venue, "wss://api.apifiny.com")
-            if "api.apifiny" in url:
-                url = f"{url}/ac/ws/v2/{venue}/asset"
-            else:
-                url = f"{url}/ac/ws/v2/asset"
+        url = urls.get(venue, "wss://api.apifiny.com")
+        url = f"{url}/ws/stream"
     return url
 
 

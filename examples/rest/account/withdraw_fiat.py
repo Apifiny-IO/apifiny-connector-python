@@ -17,7 +17,6 @@ account_id = ""
 api_key_id = ""
 secret_key = ""
 
-unified_url = True
 
 ticket_params = {
     "accountId": account_id,
@@ -34,7 +33,7 @@ fiat_info = {
                 "emailAddress": "",
                 "phoneNumber": ""
 }
-client = Client(unified_url, account_id=account_id, key=api_key_id, secret=secret_key)
+client = Client(api_key_id, secret_key)
 
 try:
     ticket = client.creat_withdraw_ticket(**ticket_params)

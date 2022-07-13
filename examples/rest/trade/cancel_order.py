@@ -17,7 +17,6 @@ account_id = ""
 api_key_id = ""
 secret_key = ""
 
-unified_url = False
 venue = "GBBO"
 
 params = {
@@ -29,7 +28,7 @@ params = {
 # cancel SOR order
 # params = {"accountId": account_id, "orderId": "order_id"}
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.cancel_order(**params)

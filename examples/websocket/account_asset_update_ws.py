@@ -2,8 +2,8 @@
 # -*- coding:utf-8 -*-
 """
 ====================================
-@File    :  update_order_ws.py
-@Time    :  2022/06/24 10:59:20
+@File    :  account_update_ws.py
+@Time    :  2022/06/24 11:03:31
 @Author  :  LiuKeCode@hotmail.com
 @Desc    :  None
 ====================================
@@ -19,5 +19,6 @@ secret_key = ""
 venue = "GBBO"
 
 client = Client(venue=venue)
-# connect trading,order stream
-client.connect(account_id, api_key_id, secret_key)
+# order/asset stream
+client.connect()
+client.login(api_key_id, secret_key)

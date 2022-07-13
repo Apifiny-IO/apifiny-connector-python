@@ -22,6 +22,7 @@ symbol = "BTCUSDT"
 params = {"venue": venue, "symbol": symbol}
 
 client = Client(venue=venue)
-client.connect(account_id, api_key_id, secret_key)
+client.connect()
+client.login(api_key_id, secret_key)
 client.cancel_order(**params)
 client.close()

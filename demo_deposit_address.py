@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-'''
-# @File    :   deposit_address.py
-# @Author  :   liuke
-# @Version :   1.0
-# @Desc    :   None
-'''
+"""
+====================================
+@File    :  demo_deposit_address.py
+@Time    :  2022/07/12 15:54:33
+@Author  :  LiuKeCode@hotmail.com
+@Desc    :  None
+====================================
+"""
+# here put the import lib
 
 '''
 Allocate the funds to the target exchange sub-account after funds arrived at Apifiny. 
 There is 0 fee for you to allocate to sub-account, using examples/funds_transfer.py.
 '''
-
 
 import logging
 
@@ -25,7 +27,6 @@ account_id = "Replace with your account id"
 api_key_id = "Replace with your api key"
 secret_key = "Replace with your secret key"
 
-unified_url = True
 venue = venue_list.BINANCE
 
 
@@ -35,7 +36,7 @@ params = {
     "coin": "USDT.TRON",
 }
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.deposit_address(**params)

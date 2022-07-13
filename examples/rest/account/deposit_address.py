@@ -22,7 +22,6 @@ account_id = "Replace with your account id"
 api_key_id = "Replace with your api key"
 secret_key = "Replace with your secret key"
 
-unified_url = True
 venue = "APIFINY"
 
 
@@ -32,7 +31,7 @@ params = {
     "coin": "USDT.TRON",
 }
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.deposit_address(**params)

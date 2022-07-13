@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-'''
-# @File    :   query_transaction_fee.py
-# @Author  :   liuke
-# @Version :   1.0
-# @Desc    :   None
-'''
+"""
+====================================
+@File    :  query_transaction_fee.py
+@Time    :  2022/07/12 15:49:14
+@Author  :  LiuKeCode@hotmail.com
+@Desc    :  None
+====================================
+"""
+# here put the import lib
 
 import logging
 from apifiny.rest_api import API as Client
@@ -17,7 +20,6 @@ account_id = ""
 api_key_id = ""
 secret_key = ""
 
-unified_url = True
 
 params = {
     "type": "withdraw",
@@ -27,7 +29,7 @@ params = {
     "to": "APIFINY",
 }
 
-client = Client(unified_url)
+client = Client()
 
 try:
     response = client.query_transaction_fee(**params)

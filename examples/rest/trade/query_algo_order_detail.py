@@ -18,7 +18,6 @@ api_key_id = ""
 secret_key = ""
 
 
-unified_url = True
 venue = "GBBO"
 
 params = {
@@ -26,7 +25,7 @@ params = {
     "orderId": "",
 }
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.query_algo_order_detail(**params)

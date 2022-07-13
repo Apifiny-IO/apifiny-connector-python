@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-'''
-# @File    :   apifiny_urls.py
-# @Author  :   liuke
-# @Version :   1.0
-# @Desc    :   None
-'''
-
+"""
+====================================
+@File    :  apifiny_urls.py
+@Time    :  2022/07/13 14:43:04
+@Author  :  LiuKeCode@hotmail.com
+@Desc    :  None
+====================================
+"""
+# here put the import lib
 
 urls = {
     'REST': {

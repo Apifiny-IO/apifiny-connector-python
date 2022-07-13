@@ -27,7 +27,7 @@ params = {
     "venue": venue,
     "orderId": generate_orderid(account_id),
     "orderInfo": {
-        "limitPrice": "30000",
+        "limitPrice": "10000",
         "orderSide": "BUY",
         "orderType": "LIMIT",
         "quantity": "0.0001",
@@ -47,6 +47,7 @@ params = {
 
 # test=True is sandbox env,default is prod env.
 client = Client(venue=venue)
-client.connect(account_id, api_key_id, secret_key)
+client.connect()
+client.login(api_key_id, secret_key)
 client.new_order(**params)
 client.close()

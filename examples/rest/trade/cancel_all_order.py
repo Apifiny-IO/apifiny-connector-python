@@ -17,7 +17,6 @@ account_id = ""
 api_key_id = ""
 secret_key = ""
 
-unified_url = False
 venue = "GBBO"
 
 
@@ -27,7 +26,7 @@ params = {
     "symbol": "BTCUSDT"
 }
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.cancel_all_order(**params)

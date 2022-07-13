@@ -17,7 +17,6 @@ account_id = ""
 api_key_id = ""
 secret_key = ""
 
-unified_url = True
 venue = "GBBO"
 
 params = {
@@ -29,7 +28,7 @@ params = {
     'endTime': 1641139200000,
 }
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, secret_key)
 
 try:
     response = client.query_completed_orders(**params)

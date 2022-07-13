@@ -57,12 +57,12 @@ client = Client(False,venue_list.BINANCE)
 # Get server timestamp
 print(client.server_time())
 
-# api key/secret are required for trade endpoints
-client = Client(unified_url=False, venue="BINANCE", account_id='<account_id>', key='<api_key>', secret='<api_secret>')
+# api_key_id/secret_key are required for trade endpoints
+client = Client(unified_url=False, venue="BINANCE", key='<api_key_id>', secret='<secret_key>')
 
 # Post a new order
 params = {
-    "accountId": account_id,
+    "accountId": '<account_id>',
     "venue": "BINANCE",
     "orderId": "",
     "orderInfo": {
@@ -109,7 +109,7 @@ from apifiny.ac_websocket import ACSpotApi as Client
 
 # Post a new order
 params = {
-    "accountId": account_id,
+    "accountId": '<account_id>',
     "venue": "BINANCE",
     "orderId": "",
     "orderInfo": {
@@ -121,9 +121,10 @@ params = {
         "timeInForce": 1,
     }
 }
-# api key/secret are required for trade endpoints
+# api_key_id/secret_key are required for trade endpoints
 client = Client(venue="BINANCE")
-client.connect(account_id, api_key_id, secret_key)
+client.connect()
+client.login(api_key_id, secret_key)
 client.new_order(**params)
 # client.close()
 ```

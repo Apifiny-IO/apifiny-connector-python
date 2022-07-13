@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-'''
-# @File    :   new_order.py
-# @Author  :   liuke
-# @Version :   1.0
-# @Desc    :   None
-'''
+"""
+====================================
+@File    :  demo_new_order.py
+@Time    :  2022/07/12 15:56:20
+@Author  :  LiuKeCode@hotmail.com
+@Desc    :  None
+====================================
+"""
+# here put the import lib
 
 import logging
 
@@ -19,7 +22,6 @@ account_id = "Replace with your account id"
 api_key_id = "Replace with your api key"
 secret_key = "Replace with your secret key"
 
-unified_url = False
 # venue = "GBBO"
 venue = venue_list.BINANCE
 
@@ -29,7 +31,7 @@ params = {
     "venue": venue,
     "orderId": generate_orderid(account_id),
     "orderInfo": {
-        "limitPrice": "30000",
+        "limitPrice": "10000",
         "orderSide": "BUY",
         "orderType": "LIMIT",
         "quantity": "0.0001",
@@ -48,7 +50,7 @@ params = {
 # "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "SOR",  "quantity": "xx", "symbol": "BTCUSDT", "timeInForce": 1}
 
 # test=True is sandbox env,default is prod env.
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.new_order(**params)

@@ -17,13 +17,16 @@ account_id = ""
 api_key_id = ""
 secret_key = ""
 
-unified_url = False
 venue = "GBBO"
 
-client = Client(unified_url, venue, account_id, api_key_id, secret_key)
+params = {
+    "accountId": account_id
+}
+
+client = Client(venue, account_id, api_key_id, secret_key)
 
 try:
-    response = client.query_open_orders()
+    response = client.query_open_orders(**params)
     logging.info(response)
 except Exception as e:
     logging.error(e)

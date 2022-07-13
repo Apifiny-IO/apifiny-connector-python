@@ -21,6 +21,7 @@ venue = "GBBO"
 params = {"orderId": account_id, "venue": venue}
 
 client = Client(venue=venue)
-client.connect(account_id, api_key_id, secret_key)
+client.connect()
+client.login(api_key_id, secret_key)
 client.cancel_all_order(**params)
 client.close()

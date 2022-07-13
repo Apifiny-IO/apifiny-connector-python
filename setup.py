@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-'''
-# @File    :   new_order.py
-# @Author  :   liuke
-# @Version :   1.0
-# @Desc    :   None
-'''
-
+"""
+====================================
+@File    :  setup.py
+@Time    :  2022/07/12 15:53:21
+@Author  :  LiuKeCode@hotmail.com
+@Desc    :  None
+====================================
+"""
+# here put the import lib
 
 import os
 from setuptools import setup, find_packages
@@ -18,7 +20,7 @@ with open(
 
 NAME = "apifiny"
 DESCRIPTION = (
-    "This is a lightweight library that works as a connector to Apifiny OPEN API."
+    "This is a library that works as a connector to Apifiny OPEN API."
 )
 AUTHOR = "Apifiny"
 URL = "https://github.com/Apifiny-IO/apifiny-connector-python"

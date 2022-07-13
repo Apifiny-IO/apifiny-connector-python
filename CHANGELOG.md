@@ -12,3 +12,9 @@
 
 ### Added
 - Support sandbox environment
+
+## 1.2.0 - 2022-07-10
+### Update
+- Update API signature generation method
+
+

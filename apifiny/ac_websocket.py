@@ -13,6 +13,7 @@
 import json
 import ssl
 import sys
+import time
 import traceback
 from threading import Thread
 
@@ -26,22 +27,17 @@ from .lib.utils import gen_signature, ws_url
 
 class ACWebSocket(object):
 
-    def __init__(self, venue, trade=True, test=False):
+    def __init__(self, venue, test=False):
         if venue:
-            self.host = ws_url(venue, trade, test)
-        self.account_id = ""
-        self.secret_key_id = ""
-        self.secret_key = ""
+            self.host = ws_url(venue, test)
         self.ws = None
         self.thread = None
-        self.header = None
         self.is_connected = None
         self.test = test
 
-    def connect(self, account_id=None, apiKey=None, secretKey=None, md=False, trace=False):
+    def connect(self, md=False, trace=False):
         """
-        :param apiKey   : API key
-        :param secretKey: key
+        :param md       : market data
         :param trace    : If websocket journal activities need to be tracked. Check StreamHandler for it.
         :return:
         """
@@ -52,19 +48,13 @@ class ACWebSocket(object):
             else:
                 self.host = "wss://api.apifiny.com/md/ws/v1"
         print(f"Connect url: {self.host}")
-        self.account_id = account_id
-        self.secret_key_id = apiKey
-        self.secret_key = secretKey
-        if self.secret_key:
-            self.header = {"signature": gen_signature(self.account_id, self.secret_key_id, self.secret_key)}
         # Websocket journal
         websocket.enableTrace(trace)
         self.ws = websocket.WebSocketApp(self.host,
                                          on_message=self.onMessage,
                                          on_error=self.onError,
                                          on_close=self.onClose,
-                                         on_open=self.onOpen,
-                                         header=self.header)
+                                         on_open=self.onOpen)
         sslopt = {"cert_reqs": ssl.CERT_NONE}
         self.thread = Thread(target=self.ws.run_forever, args=(None, sslopt))
         self.thread.start()
@@ -72,15 +62,12 @@ class ACWebSocket(object):
     def reconnect(self):
         # To close the previous session
         self.close()
-        if self.secret_key:
-            self.header = {"signature": gen_signature(self.account_id, self.secret_key_id, self.secret_key)}
         # To reconnect using the following para
         self.ws = websocket.WebSocketApp(self.host,
                                          on_message=self.onMessage,
                                          on_error=self.onError,
                                          on_close=self.onClose,
-                                         on_open=self.onOpen,
-                                         header=self.header)
+                                         on_open=self.onOpen)
         sslopt = {"cert_reqs": ssl.CERT_NONE}
         self.thread = Thread(target=self.ws.run_forever, args=(None, sslopt))
         self.thread.start()
@@ -93,8 +80,8 @@ class ACWebSocket(object):
 
     def onMessage(self, ws, evt):
         """信息推送"""
-        evt = json.loads(evt)
         print(f"APIFINY.recvMsg: {evt}")
+        # evt = json.loads(evt)
 
     def onError(self, ws, evt):
         print("APIFINY.onError_API:{}".format(evt))
@@ -106,6 +93,20 @@ class ACWebSocket(object):
         self.is_connected = 1
         print("APIFINY.Websocket.onOpen\n")
     # ----------------------------------------------------------------------
+
+    def login(self, secret_key_id, secret_key):
+        while not self.is_connected:
+            pass
+        timestamp = int(time.time() * 1000) - 500
+        sign = gen_signature(secret_key, f"timestamp={timestamp}")
+        auth = {"action":"auth","data":{"timestamp":timestamp,"apiKey":secret_key_id,"signature":sign}}
+        print(auth)
+        try:
+            self.ws.send(json.dumps(auth))
+        except websocket.WebSocketConnectionClosedException as ex:
+            print("APIFINY.login Exception:{},{}".format(str(ex), traceback.format_exc()), file=sys.stderr)
+        except Exception as ex:
+            print("APIFINY.login Exception:{},{}".format(str(ex), traceback.format_exc()), file=sys.stderr)
 
     def send_msg(self, msg):
         while not self.is_connected:
@@ -124,10 +125,10 @@ class ACWebSocket(object):
         """
         HeartBeat to maintain connection with the API
         """
-        heart_beat_ping = "ping"
+        heart_beat_ping = {"action":"heartbeat","data":"ping"}
         try:
             print("APIFINY.sendHeartBeat")
-            self.ws.send(heart_beat_ping)
+            self.ws.send(json.dumps(heart_beat_ping))
         except websocket.WebSocketConnectionClosedException as ex:
             print("APIFINY.sendHeartBeat Exception:{}".format(str(ex)), file=sys.stderr)
     # ----------------------------------------------------------------------
@@ -138,9 +139,9 @@ class ACWebSocket(object):
 class ACSpotApi(ACWebSocket):
     """AC Spot trade"""
 
-    def __init__(self, venue=None, trade=True, test=False):
+    def __init__(self, venue=None, test=False):
         """Constructor"""
-        super(ACSpotApi, self).__init__(venue, trade, test)
+        super(ACSpotApi, self).__init__(venue, test)
 
     def new_order(self, **kwargs):
         """Create Order"""
