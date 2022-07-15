@@ -52,13 +52,13 @@ Create Order
 from apifiny.rest_api import API as Client
 from apifiny.lib import venue_list
 
-client = Client(False,venue_list.BINANCE)
+client = Client(venue_list.BINANCE)
 
 # Get server timestamp
 print(client.server_time())
 
 # api_key_id/secret_key are required for trade endpoints
-client = Client(unified_url=False, venue="BINANCE", key='<api_key_id>', secret='<secret_key>')
+client = Client(venue="BINANCE", key='<api_key_id>', secret='<secret_key>')
 
 # Post a new order
 params = {
