@@ -23,7 +23,7 @@ params = {
     "accountId": account_id
 }
 
-client = Client(venue, account_id, api_key_id, secret_key)
+client = Client(venue, api_key_id, secret_key)
 
 try:
     response = client.query_open_orders(**params)
