@@ -42,6 +42,9 @@ params = {
 #               "timeInForce": 1, "stopType": "LOSS", "triggerPrice": "xx"}
 # SOR: venue = "GBBO"
 # "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "SOR",  "quantity": "xx", "symbol": "BTCUSDT", "timeInForce": 1}
+# ICEBERG
+# "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "ICEBERG",  "quantity": "0.1", "symbol": "BTCUSDT", 
+# "timeInForce": 1, "average": 0.01, "variance": 0}
 
 client = Client(venue=venue)
 client.connect()

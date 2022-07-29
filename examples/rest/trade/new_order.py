@@ -43,6 +43,9 @@ params = {
 #               "timeInForce": 1, "stopType": "LOSS", "triggerPrice": "xx"}
 # SOR: unified_url = True
 # "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "SOR",  "quantity": "xx", "symbol": "BTCUSDT", "timeInForce": 1}
+# ICEBERG
+# "orderInfo": {"limitPrice": "xx", "orderSide": "BUY", "orderType": "ICEBERG",  "quantity": "0.1", "symbol": "BTCUSDT", 
+# "timeInForce": 1, "average": 0.01, "variance": 0}
 
 client = Client(venue, api_key_id, secret_key)
 
