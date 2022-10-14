@@ -46,7 +46,7 @@ setup(
     description=DESCRIPTION,
     long_description=about["long_description"],
     long_description_content_type="text/markdown",
-    AUTHOR=AUTHOR,
+    author=AUTHOR,
     url=URL,
     keywords=["apifiny", "api", "unified APIs", "connect", "market data", "cryptocurrency", "tickdata", "spot", "futures", "orderbook data",
               "executed transactions data", "history market data", "real time market data", "fix protocol", "websocket api", "http api", "rest api", "fix api"],
@@ -54,6 +54,7 @@ setup(
     packages=find_packages(exclude=("tests",)),
     package_data = {'': ['*.yaml'],},
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Intended Audience :: Financial and Insurance Industry",
         "Intended Audience :: End Users/Desktop",
