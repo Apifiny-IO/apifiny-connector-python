@@ -22,7 +22,7 @@ This is a library that works as a connector to [APIFINY OPEN API](https://github
 
 ## Install
 ```python
-pip3 install apifiny
+pip3 install -U apifiny
 ```
 Use windows, installing quickfix fails,Please use the link to download the file and install locally.
 https://www.lfd.uci.edu/~gohlke/pythonlibs/#quickfix
@@ -51,14 +51,17 @@ Create Order
 ```python
 from apifiny.rest_api import API as Client
 from apifiny.lib import venue_list
-
+import time
 client = Client(venue_list.BINANCE)
 
 # Get server timestamp
-print(client.server_time())
-
+server_time = client.server_time()
+ts = int(time.time() * 1000)
+print(f"server time: {server_time['result']},local time: {ts}, d-value is: {server_time['result'] - ts}")
+# If you get the error:"Timestamp for this request is outside of the recvWindow", 
+# you can calibrate local time or set recv_window
 # api_key_id/secret_key are required for trade endpoints
-client = Client(venue="BINANCE", key='<api_key_id>', secret='<secret_key>')
+client = Client(venue="BINANCE", key='<api_key_id>', secret='<secret_key>', recv_window=10000)
 
 # Post a new order
 params = {
